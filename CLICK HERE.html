@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+
+    <style>
+
+        body {
+            background-color: rgb(172, 204, 216);
+            font-family: Arial;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #12181d;
+            border-radius: 20px;
+        }
+
+        h4 {
+            color: rgb(205, 224, 233);
+            margin: 5px;
+        }
+
+        #display {
+            width: 280px;
+            height: 60px;
+            font-size: 30px;
+            text-align: right;
+            margin-bottom: 15px;
+            background-color: #9cbfd6;
+        }
+
+        button {
+            width: 60px;
+            height: 55px;
+            margin: 4px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .number {
+            background-color: white;
+        }
+
+        .operator {
+            background-color: #55b9ad;
+            color: white;
+        }
+
+        .clear {
+            background-color: #e45b43;
+            color: white;
+        }
+
+        .equal {
+            background-color: orange;
+            color: white;
+        }
+
+        .zero {
+            width: 128px;
+        }
+nav{
+    border:2px solid black;
+    background-color: aliceblue;
+     display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 3px solid black;
+    color: white;
+     font-style: italic;
+     background-color: #55b9ad;
+}
+.cal{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="D:\732226CS201\calculator-logo 777.png">
+        <h1>SIMPLE CALCULATOR</h1>
+    </nav>
+
+    <div class="calculator">
+
+        <h4>TEAM-3(CSE-D)</h4>
+
+        <input type="text" id="display" value="0" readonly>
+
+        <br>
+
+        <button class="clear" onclick="clearDisplay()">AC</button>
+        <button class="operator" onclick="back()">⌫</button>
+        <button class="operator" onclick="percent()">%</button>
+        <button class="operator" onclick="operation('/')">÷</button>
+
+        <br>
+
+        <button class="number" onclick="number(7)">7</button>
+        <button class="number" onclick="number(8)">8</button>
+        <button class="number" onclick="number(9)">9</button>
+        <button class="operator" onclick="operation('*')">×</button>
+
+        <br>
+
+        <button class="number" onclick="number(4)">4</button>
+        <button class="number" onclick="number(5)">5</button>
+        <button class="number" onclick="number(6)">6</button>
+        <button class="operator" onclick="operation('-')">−</button>
+
+        <br>
+
+        <button class="number" onclick="number(1)">1</button>
+        <button class="number" onclick="number(2)">2</button>
+        <button class="number" onclick="number(3)">3</button>
+        <button class="operator" onclick="operation('+')">+</button>
+
+        <br>
+
+        <button class="number zero" onclick="number(0)">0</button>
+        <button class="operator" onclick="decimal()">.</button>
+        <button class="equal" onclick="result()">=</button>
+
+    </div>
+
+
+    <script>
+
+        let num1 = "";
+        let op = "";
+
+        function number(n) {
+
+            let display = document.getElementById("display");
+
+            if (display.value == "0") {
+                display.value = n;
+            }
+            else {
+                display.value = display.value + n;
+            }
+        }
+
+
+        function operation(x) {
+
+            num1 = document.getElementById("display").value;
+            op = x;
+
+            document.getElementById("display").value = "";
+        }
+
+
+        function result() {
+
+            let num2 = document.getElementById("display").value;
+
+            let a = Number(num1);
+            let b = Number(num2);
+
+            let ans;
+
+            if (op == "+") {
+                ans = a + b;
+            }
+
+            else if (op == "-") {
+                ans = a - b;
+            }
+
+            else if (op == "*") {
+                ans = a * b;
+            }
+
+            else if (op == "/") {
+
+                if (b == 0) {
+                    ans = "Error";
+                }
+                else {
+                    ans = a / b;
+                }
+            }
+
+            document.getElementById("display").value = ans;
+        }
+
+
+        function clearDisplay() {
+
+            document.getElementById("display").value = "0";
+
+            num1 = "";
+            op = "";
+        }
+
+
+        function back() {
+
+            let display = document.getElementById("display");
+
+            display.value = display.value.slice(0, -1);
+
+            if (display.value == "") {
+                display.value = "0";
+            }
+        }
+
+
+        function percent() {
+
+            let display = document.getElementById("display");
+
+            display.value = Number(display.value) / 100;
+        }
+
+
+        function decimal() {
+
+            let display = document.getElementById("display");
+
+            if (!display.value.includes(".")) {
+                display.value = display.value + ".";
+            }
+        }
+
+    </script>
+    <div class:"cal">
+<a href="BACK HOME.html">BACK HOME</a>
+</div>
+</body>
+</html>
